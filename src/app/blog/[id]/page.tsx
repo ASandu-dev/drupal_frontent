@@ -1,17 +1,25 @@
 // src/app/blog/[id]/page.tsx
+
 import { notFound } from "next/navigation";
-import { getPostById, BlogPostContent } from "../../../../lib/drupal";
-import { Container } from "@mui/material";
+// Make sure your imports for getPostById and BlogPostContent are correct
+import { getPostById, BlogPostContent } from "../../../../lib/drupal"; // Adjust the relative path as needed
+import { Container } from "@mui/material"; // Assuming you use Material UI
 
 interface BlogPostPageProps {
-  params: { id: string };
+  // Correctly type params as a Promise that resolves to { id: string }
+  params: Promise<{ id: string }>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
-  const { id } = await params;
+  // Await the params promise to get the actual parameters
+  const awaitedParams = await params;
+  const { id } = awaitedParams; // Destructure the id from the resolved object
+
   const post: BlogPostContent | null = await getPostById(id);
 
-  if (!post) return notFound();
+  if (!post) {
+    return notFound();
+  }
 
   return (
     <Container maxWidth={"md"} className="max-w-3xl mx-auto p-6">
