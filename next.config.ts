@@ -8,7 +8,7 @@ const nextConfig = {
   reactStrictMode: true,
   basePath: isProd ? '/drupal_frontend' : '',
   assetPrefix: isProd ? '/drupal_frontend/' : '',
-  output: 'export',
+  // output: 'export',
 };
 
 module.exports = nextConfig;

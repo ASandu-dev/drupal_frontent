@@ -56,8 +56,7 @@ export const getBlogPosts = async (): Promise<BlogPostCard[]> => {
 
   return json.data.map((node) => {
     const imageId = node.relationships?.field_image?.data?.id;
-    const imageUrl = imageId && imageMap.get(imageId) ? imageMap.get(imageId)! : null;
-
+    const imageUrl = imageMap.get(imageId ?? "") ?? null;
 
     return {
       id: node.id,
