@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { getPostById, BlogPostContent } from "../../../../lib/drupal";
 import { Container } from "@mui/material";
 
-interface BlogPostPageProps {
+type BlogPostPageProps = {
   params: { id: string };
 }
 
